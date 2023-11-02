@@ -8,7 +8,7 @@ jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.bioc }}
+    name: ${{ matrix.config.os }} (${{ matrix.config.bioc }})
 
     strategy:
       fail-fast: false
@@ -16,8 +16,8 @@ jobs:
         config:
         # - { os: macOS-latest, bioc: 'devel'}
         # - { os: ubuntu-latest, bioc: 'devel'}
-        - { os: macOS-latest, bioc: 'release'}
-        - { os: ubuntu-latest, bioc: 'release'}
+        - { os: macOS-latest, bioc: '3.18'}
+        - { os: ubuntu-latest, bioc: '3.18'}
         - { os: macOS-latest, bioc: '3.17'}
         - { os: ubuntu-latest, bioc: '3.17'}
 
@@ -45,17 +45,19 @@ jobs:
         run: |
           library(basilisk)
           library(basilisk.utils)
+          
+          sessionInfo()
+          
           basilisk.utils::installConda()
 
           basilisk::setBasiliskForceFallback(TRUE)
 
           tmploc <- file.path(".", "my_package_A")
           if (!file.exists(tmploc)) {
-              setupBasiliskEnv(tmploc, c('pandas=1.4.3'))
+              setupBasiliskEnv(tmploc, c('pandas=1.4.3', 'python=3.8'))
           }
           cl <- basiliskStart(tmploc, testload="pandas")
           cl
-
-          .libPaths()
-          sessionInfo()
+          
+          basiliskRun(proc = cl, function() sessionInfo())
         shell: Rscript {0}

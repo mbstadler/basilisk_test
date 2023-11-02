@@ -43,13 +43,17 @@ jobs:
         run: |
           library(basilisk)
           library(basilisk.utils)
-          setBasiliskForceFallback(TRUE)
+          basilisk.utils::installConda()
+
+          basilisk::setBasiliskForceFallback(TRUE)
+
           tmploc <- file.path(tempdir(), "my_package_A")
           if (!file.exists(tmploc)) {
               setupBasiliskEnv(tmploc, c('pandas=1.4.3'))
           }
           cl <- basiliskStart(tmploc, testload="pandas")
           cl
+
           .libPaths()
           sessionInfo()
         shell: Rscript {0}

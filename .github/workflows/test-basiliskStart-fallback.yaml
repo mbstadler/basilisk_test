@@ -18,6 +18,8 @@ jobs:
         # - { os: ubuntu-latest, bioc: 'devel'}
         - { os: macOS-latest, bioc: 'release'}
         - { os: ubuntu-latest, bioc: 'release'}
+        - { os: macOS-latest, bioc: '3.17'}
+        - { os: ubuntu-latest, bioc: '3.17'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true

@@ -54,10 +54,10 @@ jobs:
 
           tmploc <- file.path(".", "my_package_A")
           if (!file.exists(tmploc)) {
-              setupBasiliskEnv(tmploc, c('pandas=1.4.3', 'python=3.8'))
+              setupBasiliskEnv(tmploc, c('pandas=1.4.3'))
           }
           cl <- basiliskStart(tmploc, testload="pandas")
           cl
           
-          basiliskRun(proc = cl, function() sessionInfo())
+          basiliskRun(proc = cl, sessionInfo)
         shell: Rscript {0}

@@ -17,8 +17,10 @@ jobs:
         # - { os: macOS-latest, bioc: 'devel'}
         # - { os: ubuntu-latest, bioc: 'devel'}
         - { os: macOS-latest, bioc: '3.18'}
+        - { os: windows-latest, bioc: '3.18'}
         - { os: ubuntu-latest, bioc: '3.18'}
         - { os: macOS-latest, bioc: '3.17'}
+        - { os: windows-latest, bioc: '3.17'}
         - { os: ubuntu-latest, bioc: '3.17'}
 
     env:
